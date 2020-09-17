@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Patient")
-@PrimaryKeyJoinColumn(referencedColumnName = "idPatient")
+@PrimaryKeyJoinColumn(referencedColumnName = "idUser")
 public class Patient extends UserCit {
 
 	@Column(name = "allergyPatient", length = 50)

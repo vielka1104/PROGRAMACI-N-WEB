@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Medic")
-@PrimaryKeyJoinColumn(referencedColumnName = "idMedic")
+@PrimaryKeyJoinColumn(referencedColumnName = "idUser")
 public class Medic extends UserCit {
 
 	@Column(name = "numcmpMedic", nullable = false, unique = true)
