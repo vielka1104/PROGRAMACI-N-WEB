@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IUserCitDao;
 import pe.edu.upc.entity.UserCit;
@@ -22,9 +23,10 @@ public class IUserCitDaoImpl implements Serializable, IUserCitDao {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext
+	@PersistenceContext(name = "finalWeb")
 	private EntityManager em;
 
+	@Transactional
 	public void insert(UserCit usuario) {
 
 		try {
@@ -51,31 +53,27 @@ public class IUserCitDaoImpl implements Serializable, IUserCitDao {
 
 		return lista;
 	}
-
+	@Transactional
 	public void update(UserCit usuario) {
 		usuario = em.find(usuario.getClass(), usuario.getIdUser());
 		try {
-			/*em.getTransaction().begin();
-			usuario.setAdressUser(adressUser);
-			usuario.setBirthdateUser(birthdateUser);
-			usuario.setCellUser(cellUser);
-			usuario.setDniUser(dniUser);
-			usuario.setEmailUser(emailUser);
-			usuario.setGenUser(genUser);
-			usuario.setLastNameUser(lastNameUser);
-			usuario.setNameUser(nameUser);
-			usuario.setPasswordUser(passwordUser);
-			usuario.setUsernameUser(usernameUser);
-			em.getTransaction().commit();*/
+			/*
+			 * em.getTransaction().begin(); usuario.setAdressUser(adressUser);
+			 * usuario.setBirthdateUser(birthdateUser); usuario.setCellUser(cellUser);
+			 * usuario.setDniUser(dniUser); usuario.setEmailUser(emailUser);
+			 * usuario.setGenUser(genUser); usuario.setLastNameUser(lastNameUser);
+			 * usuario.setNameUser(nameUser); usuario.setPasswordUser(passwordUser);
+			 * usuario.setUsernameUser(usernameUser); em.getTransaction().commit();
+			 */
 
 		} catch (Exception e) {
 			System.out.println("Error al actualizar usuario");
 		}
 
 	}
-
+	@Transactional
 	public void delete(UserCit usuario) {
-		usuario=em.find(usuario.getClass(), usuario.getIdUser());
+		usuario = em.find(usuario.getClass(), usuario.getIdUser());
 		try {
 			em.getTransaction().begin();
 			em.remove(usuario);
@@ -83,7 +81,6 @@ public class IUserCitDaoImpl implements Serializable, IUserCitDao {
 		} catch (Exception e) {
 			System.out.println("Error al eliminar usuario");
 		}
-	
 
 	}
 
