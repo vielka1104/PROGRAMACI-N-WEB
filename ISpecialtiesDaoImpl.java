@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.ISpecialtiesDao;
 import pe.edu.upc.entity.Specialties;
@@ -22,9 +23,10 @@ public class ISpecialtiesDaoImpl implements Serializable, ISpecialtiesDao {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext
+	@PersistenceContext(name="finalWeb")
 	private EntityManager em;
 
+	@Transactional
 	public void insert(Specialties especialidad) {
 		try {
 			em.persist(especialidad);
@@ -34,7 +36,7 @@ public class ISpecialtiesDaoImpl implements Serializable, ISpecialtiesDao {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked"})
 	public List<Specialties> list() {
 		List<Specialties> lista = new ArrayList<Specialties>();
 		try {
@@ -44,14 +46,14 @@ public class ISpecialtiesDaoImpl implements Serializable, ISpecialtiesDao {
 			System.out.println("Error al listar especialidades");
 
 		}
-		return null;
+		return lista;
 	}
-
+	@Transactional
 	public void update(Specialties especialidad) {
 		// TODO Auto-generated method stub
 
 	}
-
+	@Transactional
 	public void delete(Specialties especialidad) {
 		try {
 			em.getTransaction().begin();
@@ -64,3 +66,4 @@ public class ISpecialtiesDaoImpl implements Serializable, ISpecialtiesDao {
 	}
 
 }
+
