@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Listado de Laboratorios:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span style="color:#0068FF">Recetas registradas</span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						
+						<br />
+						<p:dataTable id="lstRecetasRegistradas" var="la"
+							value="#{laboratoryController.listlaboratories}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen recetas registradas" rowIndexVar="item"
+							style="margin-bottom:25">
+							<br />
+							<p:column headerText="Id" 
+								sortBy="#{la.idLaboratory}"
+								class="thead-dark">
+								<h:outputText value="#{la.idLaboratory}" class="thead-dark" />
+							</p:column>
+							<!-- Sintaxis incluir comentario xhtml -->
+							<p:column headerText="Paciente" 
+								sortBy="#{la.nameLaboratory}">
+								<h:outputText value="#{la.nameLaboratory}" />
+							</p:column>
+							<p:column headerText="Especialidad"
+								sortBy="#{la.adressLaboratory}">
+								<h:outputText value="#{la.adressLaboratory}" />
+							</p:column>
+
+							<p:column headerText="Medicamentos"
+								sortBy="#{la.birthdateLaboratory}">
+								<h:outputText value="#{la.birthdateLaboratory}"/>
+							</p:column>
+							<p:column headerText="Frecuencia"
+								sortBy="#{la.birthdateLaboratory}">
+								<h:outputText value="#{la.birthdateLaboratory}"/>
+							</p:column>
+							
+						<!-- 	opción actualizar receta, llama al metodo update de controller receta -->
+							<p:column headerText="Acción" style="text-align:center;">
+								<h:commandLink action="#{laboratoryController.goUpdate(la)}">
+									<i class="fas fa-pencil-alt"></i>
+								</h:commandLink>
+							</p:column>
+							
+							
+						</p:dataTable>
+						
+					<!-- 	este boton solo lo puse es para ver la vista, lo que se debe hacer es 
+					que en la parte de Acción de la tabla el action llama hacia el metodo
+						goupdate del controller receta, un ejemplo esta en  listCitasxhtml -->
+						<p:commandButton value="Modificar una receta"
+							action="ModificarReceta?faces-redirect=true" immediate="true"
+							styleClass="btn btn-primary" ajax="false" />
+						<br />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+	</ui:define>
+</ui:composition>
+</html>

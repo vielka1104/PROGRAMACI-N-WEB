@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/main_base.css" />
+	<ui:define name="title">
+        .:Listado de Laboratorios:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span style="color: #0068FF">Mi Perfil</span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+		<center >
+			<span style="margin-top: 5">Datos personales</span>
+			<p:panelGrid columns="2" styleClass="panelGridCenter" var="la"
+				value="#{laboratoryController.listlaboratories}" height="30px">
+				<f:facet name="header">
+					<p:graphicImage name="img/PerfilUser.png" />
+				</f:facet>
+
+				<h:outputText value="Name:" />
+				<h:outputText value="Chupetin" />
+
+				<h:outputText value="Team:" />
+				<h:outputText value="#{la.nameLaboratory}" />
+
+				<h:outputText value="Position:" />
+				<h:outputText value="#{la.nameLaboratory}" />
+
+				<h:outputText value="Number:" />
+				<h:outputText value="#{la.nameLaboratory}" />
+			</p:panelGrid>
+				</center>
+			<ul class="list-group">
+				<li class="list-group-item active">Cras justo odio</li>
+				<li class="list-group-item">Dapibus ac facilisis in</li>
+				<li class="list-group-item">Morbi leo risus</li>
+				<li class="list-group-item">Porta ac consectetur ac</li>
+				<li class="list-group-item">Vestibulum at eros</li>
+			</ul>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
