@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Laboratorio:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span style="color:#0068FF">Registrar receta médica</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<h:outputLabel value="id" styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{RecipeController.r.idRecipe}" maxlength="10"
+				required="true" />
+			<br />
+			<h:outputLabel value="Cita: " for="cboPaciente"
+				styleClass="control-label" />
+			<br />
+			<p:selectOneMenu id="cboDoctor"
+				value="#{RecipeController.r.Reserve}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Selecciona un cita" itemValue="" />
+				<f:selectItems value="#{RecipeController.listReserve}" var="re"
+					itemLabel="#{re.idReserve}" itemValue="#{re}" />
+			</p:selectOneMenu>
+
+			<br />
+			<br />
+		
+			
+
+			<h:outputLabel value="Descripcion: "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desc" styleClass="form-control"
+				value="#{RecipeController.r.descRecipe}" maxlength="500"
+				required="true" />
+			<br />
+			<br />
+			<p>
+				<p:commandButton value="Cancelar"
+					action="panel?faces-redirect=true" immediate="true"
+					styleClass="btn btn-primary" ajax="false" />
+					
+				<p:commandButton value="Registrar receta"
+					actionListener="#{RecipeController.insert()}"
+					styleClass="btn btn-primary" update="@form"
+					action="RecetasRegistradas?faces-redirect=true" immediate="true"/>
+			</p>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
